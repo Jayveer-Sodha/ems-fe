@@ -2,12 +2,12 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Brightness2, Brightness5 } from "@material-ui/icons";
 import { ColorModeContext } from "./ColorModeContext";
+import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,13 +21,14 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     justifyContent: "center",
   },
+  rightDiv: {
+    marginLeft: "auto",
+  },
 }));
 
 const Navbar = () => {
-  const { toggleMode, mode } = React.useContext(ColorModeContext);
-  console.log(toggleMode, mode);
-
-  const icon = !mode ? <Brightness5 /> : <Brightness2 />;
+  const { toggleMode, darkMode } = React.useContext(ColorModeContext);
+  const icon = !darkMode ? <Brightness5 /> : <Brightness2 />;
   const classes = useStyles();
 
   return (
@@ -42,14 +43,12 @@ const Navbar = () => {
           >
             <MenuIcon />
           </IconButton>
-
-          <Typography variant="h6" className={classes.title}>
-            Material-Ui & DarkMode with React-Js
-          </Typography>
-          <IconButton color="inherit" aria-label="mode" onClick={toggleMode}>
-            {icon}
-          </IconButton>
-          <Button color="inherit">Login</Button>
+          <Box className={classes.rightDiv}>
+            <IconButton color="inherit" aria-label="mode" onClick={toggleMode}>
+              {icon}
+            </IconButton>
+            <Button color="inherit">Login</Button>
+          </Box>
         </Toolbar>
       </AppBar>
     </div>
