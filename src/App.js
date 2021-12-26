@@ -2,17 +2,17 @@ import React from "react";
 import HeaderComponent from "./components/headerComponent/HeaderComponent";
 
 import { Paper } from "@material-ui/core";
-import { ColorContextProvider } from "./components/headerComponent/ColorModeContext";
+import { ContextProvider } from "./context/Context";
 
 function App() {
   return (
-    <ColorContextProvider>
+    <ContextProvider>
       <React.Fragment>
         <Paper style={{ height: "100vh" }}>
           <HeaderComponent />
         </Paper>
       </React.Fragment>
-    </ColorContextProvider>
+    </ContextProvider>
   );
 }
 
